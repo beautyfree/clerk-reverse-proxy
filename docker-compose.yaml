@@ -1,5 +1,5 @@
 services:
-  bore-router:
+  clerk-reverse-proxy:
     image: ghcr.io/beautyfree/clerk-reverse-proxy/clerk-reverse-proxy:latest
     restart: always
     environment:
