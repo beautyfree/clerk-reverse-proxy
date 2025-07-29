@@ -16,7 +16,16 @@ server {
         proxy_set_header Clerk-Proxy-Url ${CLERK_PROXY_URL};
         proxy_set_header Clerk-Secret-Key ${CLERK_SECRET_KEY};
         proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header Host $host;
         proxy_redirect   off;
+
+        # Add connection and timeout settings to prevent upstream errors
+        proxy_connect_timeout       60s;
+        proxy_send_timeout          60s;
+        proxy_read_timeout          60s;
+        proxy_buffering             off;
+        proxy_http_version          1.1;
+        proxy_set_header Connection "";
     }
 }
 EOF
