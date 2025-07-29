@@ -3,8 +3,9 @@ FROM nginx:alpine
 # Install envsubst for template processing
 RUN apk add --no-cache gettext
 
-# Create nginx configuration template and startup script
-RUN cat > /etc/nginx/templates/default.conf.template << 'EOF'
+# Create templates directory and nginx configuration template
+RUN mkdir -p /etc/nginx/templates && \
+    cat > /etc/nginx/templates/default.conf.template << 'EOF'
 server {
     listen 80;
     server_name _;
