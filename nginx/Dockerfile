@@ -20,6 +20,11 @@ server {
         proxy_set_header Clerk-Proxy-Url ${CLERK_PROXY_URL};
         proxy_set_header Clerk-Secret-Key ${CLERK_SECRET_KEY};
         proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header Host $proxy_host;
+        proxy_ssl_server_name on;
+        proxy_ssl_name $proxy_host;
+        proxy_ssl_protocols TLSv1.2 TLSv1.3;
+        proxy_ssl_verify off;
         proxy_redirect   off;
     }
 }
